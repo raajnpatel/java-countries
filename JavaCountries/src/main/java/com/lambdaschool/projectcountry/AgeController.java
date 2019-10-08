@@ -17,10 +17,11 @@ public class AgeController
 //    // localhost:3456/data/age/age/{age}
     @GetMapping(value = "/age/{age}",
     produces = "application/json")
-    public ResponseEntity<?> getMedianAge(@PathVariable int age) {
+    public ResponseEntity<?> getMedianAge(@PathVariable int age)
+    {
         ArrayList<Country> rtnCnt = ProjectcountryApplication.ourCountryList.findCountries(c->c.getMedianAge() >= age);
         rtnCnt.sort((c1,c2)->c1.getMedianAge()-c2.getMedianAge());
-        return new ResponseEntity<>(rtnCnt.get(0), HttpStatus.OK);
+        return new ResponseEntity<>(rtnCnt, HttpStatus.OK);
 
     }
 
